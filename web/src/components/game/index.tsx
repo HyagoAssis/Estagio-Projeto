@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FormEvent } from "react";
+import React, {useState} from "react";
 import Rating from '@material-ui/lab/Rating';
 
 
@@ -17,16 +17,15 @@ export interface GameProps {
   developer?: string;
   release_date?: string;
   freetogame_profile_url?: string;
-  evaluation?: number;
-
 }
+
 const Game: React.FC<GameProps> = (props) => {
 
   const localValue = localStorage.getItem('classification' + props.id);
 
   const localStatus = localStorage.getItem('status' + props.id);
 
-  const [value, setValue] = React.useState<number | null>(localValue != null ? parseInt(localValue) : 0);
+  const [value, setValue] = useState(localValue != null ? parseInt(localValue) : 0);
 
   const [status, setStatus] = useState(localStatus != null ? (localStatus) : '');
 
@@ -68,6 +67,7 @@ const Game: React.FC<GameProps> = (props) => {
             <p>Status</p>
             <select
               name={'status' + props.id}
+              // defaultValue={"Selecione uma opção"}
               value={status}
               onChange={e => {
                 console.log(status);
@@ -76,7 +76,7 @@ const Game: React.FC<GameProps> = (props) => {
                 setStatus(e.target.value)
               }}
             >
-              <option selected> Selecione uma opção </option>
+              <option> Selecione uma opção </option>
               <option> Joguei</option>
               <option> Jogando</option>
               <option> Querendo Jogar</option>
