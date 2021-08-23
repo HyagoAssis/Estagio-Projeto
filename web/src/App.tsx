@@ -3,7 +3,7 @@ import styled from "styled-components";
 import axios from "axios";
 import { IoSearch, } from "react-icons/io5";
 import Game, { GameProps } from './components/game';
-import './assets/styles/global.css';
+import './App.css';
 
 const api = axios.create({
   baseURL: 'https://www.freetogame.com/api/games',

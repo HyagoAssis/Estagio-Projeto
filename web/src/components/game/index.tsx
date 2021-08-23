@@ -1,4 +1,4 @@
-import React, { useState, useEffect,FormEvent } from "react";
+import React, { useState, useEffect, FormEvent } from "react";
 import Rating from '@material-ui/lab/Rating';
 
 
@@ -22,22 +22,18 @@ export interface GameProps {
 }
 const Game: React.FC<GameProps> = (props) => {
 
-  const localValue = localStorage.getItem('classification'+props.id);
+  const localValue = localStorage.getItem('classification' + props.id);
 
-  const localStatus = localStorage.getItem('status'+props.id);
-  
-  const [value, setValue] = React.useState<number | null>( localValue != null ? parseInt(localValue) : 0);
+  const localStatus = localStorage.getItem('status' + props.id);
 
-  const [status,setStatus] = useState(localStatus != null ? parseInt(localStatus) : '');
+  const [value, setValue] = React.useState<number | null>(localValue != null ? parseInt(localValue) : 0);
 
-  useEffect(() => {
-    
-  }, [status]);
+  const [status, setStatus] = useState(localStatus != null ? (localStatus) : '');
 
   return (
     <div id="game-block">
       <div className="img-block">
-        <img src={props.thumbnail} alt="Hyago Assis" className="img-game" />
+        <img src={props.thumbnail} alt={"imagem: " + props.title} className="img-game" />
       </div>
       <div className="content-block">
         <p>Título: {props.title}</p>
@@ -51,28 +47,36 @@ const Game: React.FC<GameProps> = (props) => {
           <div className="evaluation">
             <p>Avalie</p>
             <Rating
-              name="simple-controlled"
-              value={value}            
+              name={"evaluation" + props.id}
+              value={value}
               max={4}
               onChange={(event, newValue) => {
-                if (newValue != null) {
-                  localStorage.setItem('classification'+props.id, newValue.toString());
-                  setValue(newValue);
-                }
+                  if (newValue != null) {
+                    localStorage.setItem('classification' + props.id, newValue.toString());
+                    setValue(newValue);
+                  }
+                  else{
+                    newValue = 0;
+                    localStorage.setItem('classification' + props.id, newValue.toString());
+                    setValue(newValue);
+                  }
+            
               }}
             />
           </div>
           <div className="status">
             <p>Status</p>
             <select
-              value={'teste'}
-              onChange={e => { 
-                localStorage.setItem('status'+props.id, e.target.value)
-                console.log(status); 
+              name={'status' + props.id}
+              value={status}
+              onChange={e => {
+                console.log(status);
+                console.log(e.target.value);
+                localStorage.setItem('status' + props.id, e.target.value)
                 setStatus(e.target.value)
               }}
             >
-              <option> Selecione uma opção </option>
+              <option selected> Selecione uma opção </option>
               <option> Joguei</option>
               <option> Jogando</option>
               <option> Querendo Jogar</option>
