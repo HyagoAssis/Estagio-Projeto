@@ -91,7 +91,7 @@ function App() {
         </select>
         <select
           name='status'
-          value={statusInput}
+          value={statusFilter}
           onChange={e => {
             setStatusFilter(e.target.value)
           }}
