@@ -43,7 +43,7 @@ function App() {
     setStatusInput(statusFilter);
   }
 
-  function removeFilter(){
+  function removeFilter() {
     setStatusFilter('Status');
     setOrdination('Ordenar');
   }
@@ -116,9 +116,6 @@ function App() {
                 if ((localStorage.getItem('status' + game.id)?.includes(statusInput)) || statusInput === 'Status') {
                   i = i + 1;
                   if (i <= 20) {
-                    // const localValue = localStorage.getItem('classification' + game.id);
-
-                    // const localStatus = localStorage.getItem('status' + game.id);
                     return <Game
                       key={game.id}
                       id={game.id}
