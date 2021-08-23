@@ -6,14 +6,14 @@ import Rating from '@material-ui/lab/Rating';
 import './styles.css';
 
 export interface GameProps {
-  id?: number;
-  title?: string;
-  thumbnail?: string;
-  short_description?: string;
-  game_url?: string;
-  genre?: string;
-  platform?: string;
-  publisher?: string;
+  id: number;
+  title: string;
+  thumbnail: string;
+  short_description: string;
+  game_url: string;
+  genre: string;
+  platform: string;
+  publisher: string;
   developer?: string;
   release_date?: string;
   freetogame_profile_url?: string;
@@ -35,12 +35,12 @@ const Game: React.FC<GameProps> = (props) => {
         <img src={props.thumbnail} alt={"imagem: " + props.title} className="img-game" />
       </div>
       <div className="content-block">
-        <p>Título: {props.title}</p>
-        <p>Gênero: {props.genre}</p>
-        <p>Plataforma: {props.platform}</p>
-        <p>Editora: {props.publisher}</p>
-        <p>Link: {props.game_url}</p>
-        <p>Descrição: {props.short_description}</p>
+        <p><span className="game-title">Título:</span> {props.title}</p>
+        <p><span className="game-title">Gênero:</span> {props.genre}</p>
+        <p><span className="game-title">Plataforma:</span> {props.platform}</p>
+        <p><span className="game-title">Editora:</span> {props.publisher}</p>
+        <p><span className="game-title">Link:</span> <a className="game-link" href={props.game_url}>{props.game_url}</a></p>
+        <p><span className="game-title">Descrição:</span> {props.short_description}</p>
 
         <div className="content-classification">
           <div className="evaluation">
@@ -66,8 +66,8 @@ const Game: React.FC<GameProps> = (props) => {
           <div className="status">
             <p>Status</p>
             <select
+              className="status-select"
               name={'status' + props.id}
-              // defaultValue={"Selecione uma opção"}
               value={status}
               onChange={e => {
                 console.log(status);

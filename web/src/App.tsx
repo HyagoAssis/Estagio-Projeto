@@ -1,7 +1,5 @@
 import React, { useState, useEffect, FormEvent } from 'react';
-// import styled from "styled-components";
 import axios from "axios";
-import { IoSearch, } from "react-icons/io5";
 import Game, { GameProps } from './components/game';
 import './App.css';
 
@@ -18,7 +16,7 @@ function App() {
 
   const [statusFilter, setStatusFilter] = useState('');
 
-  const [statusInput, setStatusInput] = useState('');
+  const [statusInput, setStatusInput] = useState('Status');
 
   const [ordination, setOrdination] = useState('');
 
@@ -28,23 +26,8 @@ function App() {
     e.preventDefault();
     setSearch(inputSearch);
   }
-  // async function searchGames(e: FormEvent) {
-  //   e.preventDefault();
-
-  //   api
-  //     .get("",{
-  //       params: {
-  //         category
-  //       }
-  //     })
-  //     .then((response) => setGames(response.data))
-  //     .catch((err) => {
-  //       console.error("ops! ocorreu um erro" + err);
-  //       setGames([]);
-  //     }); 
-  // }
   function filterOrder() {
-   
+
     if (ordination === "Ordem Alfabética")
       listGamesAlphabetical();
     if (ordination === "Ordenar")
@@ -58,6 +41,11 @@ function App() {
 
     filterOrder();
     setStatusInput(statusFilter);
+  }
+
+  function removeFilter(){
+    setStatusFilter('Status');
+    setOrdination('Ordenar');
   }
 
   async function listGames() {
@@ -83,8 +71,8 @@ function App() {
             onChange={e => { setInputSearch(e.target.value) }}
             placeholder="Procure seu jogo favorito"
           />
-          <button type="submit">
-            <IoSearch size={30} className="search-logo" />
+          <button className="submit-search" type="submit">
+            <b>Pesquisar</b>
           </button>
         </form>
       </header>
@@ -95,25 +83,27 @@ function App() {
           onChange={e => {
             setOrdination(e.target.value)
           }}
+          className="select-filter"
         >
           <option>Ordenar</option>
           <option>Ordem Alfabética</option>
-          <option>Ordem de Avaliação</option>
+          <option>Ordem de Avaliação (Desenvolvimento)</option>
         </select>
         <select
           name='status'
-          value={statusFilter}
+          value={statusInput}
           onChange={e => {
             setStatusFilter(e.target.value)
           }}
+          className="select-filter"
         >
-          <option> Filtrar</option>
-          <option> Joguei</option>
-          <option> Jogando</option>
+          <option>Status</option>
+          <option>Joguei</option>
+          <option>Jogando</option>
           <option>Querendo Jogar</option>
         </select>
-        <button type="submit">Enviar</button>
-
+        <button onClick={removeFilter} className="remove-filter">Limpar</button>
+        <button type="submit" className="submit-filter">Filtrar</button>
       </form>
       <div id="page-content">
 
@@ -123,15 +113,12 @@ function App() {
               if (game.title?.toUpperCase().includes(search.toUpperCase())
                 || game.genre?.toUpperCase().includes(search.toUpperCase())
                 || game.publisher?.toUpperCase().includes(search.toUpperCase())) {
-                if ((statusInput !== undefined && localStorage.getItem('status' + game.id)?.includes(statusInput)) || statusInput === 'Filtrar') {
+                if ((localStorage.getItem('status' + game.id)?.includes(statusInput)) || statusInput === 'Status') {
                   i = i + 1;
                   if (i <= 20) {
                     // const localValue = localStorage.getItem('classification' + game.id);
 
                     // const localStatus = localStorage.getItem('status' + game.id);
-                    // console.log(game.title);
-                    // console.log(localValue);
-                    // console.log(localStatus);
                     return <Game
                       key={game.id}
                       id={game.id}
@@ -145,11 +132,7 @@ function App() {
                     />
                   }
                 }
-                // else
-                //   return <></>
               }
-              // else
-              //   return <></>
             }
             )}
         </div>

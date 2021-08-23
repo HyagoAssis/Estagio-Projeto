@@ -31,13 +31,16 @@
 
 #page-main #page-header .search-block {
   position: relative;
-  width: 80%;
+  width: 70%;
   height: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #3a9ae6;
   border-radius: 0.8rem;
+}
+#page-main #page-header .search-block .submit-search{
+  width: 10%;
 }
 
 #page-main #page-header .search-block input {
@@ -50,36 +53,54 @@
   font-size: 1.4rem;
   padding-left: 1.6vw;
 }
-
-#page-main #page-header .search-block:focus-within::after {
-  width: calc(100% -3.2rem);
-  height: 2px;
-  content: '';
-  background: #3a9ae6;
-  position: absolute;
-  left: 1.6rem;
-  right: 1.6rem;
-  bottom: 0;
-}
 #page-main #filter-block {
   /* margin: auto;
   justify-content: center; */
   text-align: center;
 }
+#page-main #filter-block .select-filter{
+  width: 10%;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 25px;
+  border-radius: 0.4rem;
+  background-color: white;
+}
+
+#page-main #filter-block .submit-filter {
+  width: 10%;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 25px;
+  border-radius: 0.4rem;
+  background-color: #3a9ae6;
+  cursor: pointer;
+  border: none;
+}
+#page-main #filter-block .remove-filter {
+  width: 5%;
+  margin-top: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 25px;
+  border-radius: 0.4rem;
+  background-color: #ff5e6a;
+  cursor: pointer;
+  border: none;
+}
 
 #page-main #page-header .search-block button {
   border: none;
   background-color: #3a9ae6;
-  height: 60%;
+  height: 100%;
   width: 5%;
+  cursor: pointer;
+  border-radius: 0.8rem;
   /* border-bottom-right-radius: 0.8rem;
   border-top-right-radius: 0.8rem; */
 }
-
-#page-main #page-header button:hover {
-  cursor: pointer;
-}
-
 #page-main #page-content {
   width: 95%;
   margin: auto;
@@ -100,7 +121,24 @@
   font-size: 1.6rem;
 }
 
-@media(max-width: 700px) {
-
+@media(max-width: 1025px) {
+  #page-main #filter-block .select-filter{
+    width: 25%;
+  }
+  #page-main #filter-block .submit-filter {
+    width: 25%;
+  }
+  #page-main #filter-block .remove-filter {
+    width: 25%;
+  }
+  #page-main #page-header .search-block {
+    width: 90%;
+  }
+  #page-main #page-header .search-block .submit-search{
+    width: 30%;
+  }
+  #page-main #page-header .search-block input{
+    font-size: 1rem;
+  }
 
 }
