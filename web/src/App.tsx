@@ -4,7 +4,11 @@ import Game, { GameProps } from './components/game';
 import './App.css';
 
 const api = axios.create({
-  baseURL: 'https://www.freetogame.com/api/games',
+  baseURL: 'https://free-to-play-games-database.p.rapidapi.com/api/games',
+  headers: {
+    'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com',
+    'x-rapidapi-key': '159a460b81msh0a7ee9316e0548fp1efde3jsn3d68e831414d'
+  }
 });
 
 function App() {
